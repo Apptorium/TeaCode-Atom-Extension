@@ -1,0 +1,18 @@
+{
+  "name": "teacode-atom-helper",
+  "main": "./lib/teacode-atom-helper",
+  "version": "1.0.0",
+  "description": "Provides integration with TeaCode http://apptorium.com/teacode",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "teacode-atom-helper:expand"
+  },
+  "repository": "https://github.com/Apptorium/TeaCode-Atom-Extension",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
