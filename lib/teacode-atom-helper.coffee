@@ -32,21 +32,22 @@ module.exports = TeacodeAtomHelper =
 
   setCursorPosition: (position) ->
     editor = atom.workspace.getActiveTextEditor()
-    editor.setCursorScreenPosition(position, [])
+    editor.setCursorBufferPosition(position, [])
 
   newPositionForText: (currentPosition, text, numberOfCharacters) ->
-    newPosition = currentPosition
+    row = currentPosition.row
+    column = currentPosition.column
 
     for i in [0..(text.length-1)]
       if i == numberOfCharacters
         break
       if text[i] == "\n"
-        newPosition.row += 1
-        newPosition.column = 0
+        row += 1
+        column = 0
       else
-        newPosition.column += 1
+        column += 1
 
-    return newPosition
+    return [row, column]
 
   deleteTextAtRange: (range) ->
     buffer = atom.workspace.getActivePaneItem().buffer
@@ -94,7 +95,7 @@ module.exports = TeacodeAtomHelper =
   handleJson: (json) ->
     if json == null
       return
-
+    console.log json
     data = JSON.parse(json)
 
     if data == null
@@ -119,7 +120,6 @@ module.exports = TeacodeAtomHelper =
     scriptPath = atom.packages.getPackageDirPaths() + "/teacode-atom-helper/lib/expand.sh"
     fileExtension = @getCurrentFilename().split(".").pop()
     text = @getTextFromBeginningOfLineToCursor()
-
     if text == null || text == ""
       return
 

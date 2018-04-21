@@ -1,7 +1,7 @@
 {
   "name": "teacode-atom-helper",
   "main": "./lib/teacode-atom-helper",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Provides integration with TeaCode http://apptorium.com/teacode",
   "keywords": [],
   "activationCommands": {
