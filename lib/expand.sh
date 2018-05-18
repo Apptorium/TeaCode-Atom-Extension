@@ -14,7 +14,7 @@ while getopts ":e:t:" opt; do
 	    FILE_EXTENSION="$OPTARG"
     ;;
     t) 
-		TEXT="$OPTARG"
+        TEXT=`echo $OPTARG | sed -e 's/\\\\/\\\\\\\\/g' | sed -e 's/\"/\\\"/g'`
     ;;
 	\?) 
 		echo "Invalid option -$OPTARG\n" >&2
@@ -25,7 +25,7 @@ while getopts ":e:t:" opt; do
 done
 
 if [ -z "$TEXT" ]; then
-	echo "no text"
+	echo "no text" >&2
     show_help
 	exit
 fi

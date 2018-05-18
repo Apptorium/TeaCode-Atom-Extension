@@ -97,7 +97,6 @@ module.exports = TeacodeAtomHelper =
       return
     console.log json
     data = JSON.parse(json)
-
     if data == null
       return
 
@@ -116,6 +115,9 @@ module.exports = TeacodeAtomHelper =
           console.log error
           window.alert("Could not run TeaCode. Please make sure it's installed. You can download the app from www.apptorium.com/teacode")
 
+  escapeString: (str) ->
+    return str.replace(/[\"\\]/g, "\\$&")
+
   runScript: ->
     scriptPath = atom.packages.getPackageDirPaths() + "/teacode-atom-helper/lib/expand.sh"
     fileExtension = @getCurrentFilename().split(".").pop()
@@ -123,7 +125,8 @@ module.exports = TeacodeAtomHelper =
     if text == null || text == ""
       return
 
-    command = "sh #{scriptPath} -e \"#{fileExtension}\" -t \"#{text}\""
+    command = "sh #{scriptPath} -e \"#{@escapeString(fileExtension)}\" -t \"#{@escapeString(text)}\""
+    console.log @escapeString(command)
     @executeCommand(command)
 
   expand: ->
