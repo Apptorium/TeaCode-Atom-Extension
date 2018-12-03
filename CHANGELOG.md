@@ -3,3 +3,5 @@
 ## 1.1.1 - Support for hard tabs
 
 ## 1.2.0 - Support for special characters
+
+## 1.2.1 - Corrected indention

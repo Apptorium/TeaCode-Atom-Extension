@@ -33,6 +33,7 @@ module.exports = TeacodeAtomHelper =
   setCursorPosition: (position) ->
     editor = atom.workspace.getActiveTextEditor()
     editor.setCursorBufferPosition(position, [])
+    atom.commands.dispatch atom.views.getView(editor), 'editor:auto-indent'
 
   newPositionForText: (currentPosition, text, numberOfCharacters) ->
     row = currentPosition.row
@@ -55,7 +56,7 @@ module.exports = TeacodeAtomHelper =
 
   insertText: (text) ->
     editor = atom.workspace.getActiveTextEditor()
-    editor.insertText(text, [])
+    editor.insertText(text, {autoIndent: true, autoIndentNewline: true})
 
   getCurrentFilename: ->
     pane = atom.workspace.getActivePaneItem()
@@ -95,7 +96,6 @@ module.exports = TeacodeAtomHelper =
   handleJson: (json) ->
     if json == null
       return
-    console.log json
     data = JSON.parse(json)
     if data == null
       return
@@ -116,7 +116,7 @@ module.exports = TeacodeAtomHelper =
           window.alert("Could not run TeaCode. Please make sure it's installed. You can download the app from www.apptorium.com/teacode")
 
   escapeString: (str) ->
-    return str.replace(/[\"\\]/g, "\\$&")
+    return str.replace(/[\"\\]/g, "\\$&").replace("\\n", "\\\\n")
 
   runScript: ->
     scriptPath = atom.packages.getPackageDirPaths() + "/teacode-atom-helper/lib/expand.sh"
