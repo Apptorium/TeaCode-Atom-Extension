@@ -110,7 +110,7 @@ module.exports = TeacodeAtomHelper =
       exec command, (error, stdout, stderr) ->
         if stdout
           self.handleJson(stdout)
-        if stderr
+        if error
           console.log stderr
           console.log error
           window.alert("Could not run TeaCode. Please make sure it's installed. You can download the app from www.apptorium.com/teacode")
