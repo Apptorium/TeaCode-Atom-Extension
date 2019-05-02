@@ -6,4 +6,4 @@
 
 ## 1.2.1 - Corrected indention
 
-# 1.2.2 - Improved error handling
+## 1.2.3 - Improved error handling
