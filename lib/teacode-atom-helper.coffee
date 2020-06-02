@@ -60,9 +60,9 @@ module.exports = TeacodeAtomHelper =
 
   getCurrentFilename: ->
     pane = atom.workspace.getActivePaneItem()
-    file = pane.buffer.file
+    file = pane.buffer?.file
 
-    if file == null
+    if file == null || file == undefined
       return ""
 
     filePath = file.path
